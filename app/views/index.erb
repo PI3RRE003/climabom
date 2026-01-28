@@ -25,19 +25,39 @@
         </div>
 
         <div class="relative mb-6 group">
-            <input type="text" id="cityInput" placeholder="Busque uma cidade..." 
-                class="w-full p-4 pl-12 rounded-2xl bg-white/90 border-none shadow-xl focus:ring-2 focus:ring-blue-300 transition-all outline-none text-gray-700 placeholder-gray-400">
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors"></i>
-            <button id="searchBtn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-all active:scale-95">
+            <%# O formulário deve envolver todo o campo de busca %>
+            <form action="/" method="get" class="w-full">
+                
+                <%# 1. O Input com o design que você criou %>
+                <%# IMPORTANTE: adicionei name="city" para o Ruby capturar no params[:city] %>
+                <input type="text" 
+                    name="city" 
+                    id="cityInput" 
+                    placeholder="Busque uma cidade..." 
+                    value="<%= params[:city] %>"
+                    class="w-full p-4 pl-12 rounded-2xl bg-white/90 border-none shadow-xl focus:ring-2 focus:ring-blue-300 transition-all outline-none text-gray-700 placeholder-gray-400">
+                
+                <%# 2. O Ícone de lupa %>
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors"></i>
+                
+                <%# 3. O Botão de busca posicionado dentro do input %>
+                <button type="submit" 
+                        class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-all active:scale-95 shadow-md">
                 Buscar
-            </button>
-        </div>
+                </button>
+
+            </form>
+            </div>
 
         <% if @clima%>
-            <div id="weatherCard" class="glass rounded-3xl p-8 text-white text-center shadow-2xl hidden transition-all duration-500">
+            <div id="weatherCard" class="glass rounded-3xl p-8 text-white text-center shadow-2xl transition-all duration-500">
                 <div class="mb-4">
                     <h2 id="cityName" class="text-3xl font-bold"><%= @clima.cidade%></h2>
-                    <p id="date" class="text-blue-100 text-sm opacity-80"><%= Time.now.strftime("%A, %d de %B") %></p>
+                    <p id="date" class="text-blue-100 text-sm opacity-80">
+                    <%= { "Monday" => "Segunda", "Tuesday" => "Terça", "Wednesday" => "Quarta", "Thursday" => "Quinta", "Friday" => "Sexta", "Saturday" => "Sábado", "Sunday" => "Domingo" }[Time.now.strftime("%A")] %>, 
+                    <%= Time.now.day %> de 
+                    <%= { "January" => "Janeiro", "February" => "Fevereiro", "March" => "Março", "April" => "Abril", "May" => "Maio", "June" => "Junho", "July" => "Julho", "August" => "Agosto", "September" => "Setembro", "October" => "Outubro", "November" => "Novembro", "December" => "Dezembro" }[Time.now.strftime("%B")] %>
+                    </p>
                 </div>
 
                 <div class="flex flex-col items-center my-6">
