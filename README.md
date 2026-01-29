@@ -3,6 +3,7 @@
 > Uma aplicação web moderna e minimalista para consulta de previsão do tempo em tempo real, construída com Ruby, Sinatra e Tailwind CSS.
 
 <img width="1920" height="859" alt="Captura de tela 2026-01-29 181417" src="https://github.com/user-attachments/assets/16950192-49ae-460b-b1d1-8504b3fece91" /> 
+
 # 💻 Sobre o Projeto
 
 O **ClimaBom** é um projeto Full Stack simples que consome a API da **OpenWeatherMap** para fornecer dados meteorológicos precisos. O diferencial do projeto está na sua interface limpa utilizando o conceito de **Glassmorphism** e na lógica de back-end que filtra e processa dados brutos da API para entregar uma previsão otimizada de 5 dias.
