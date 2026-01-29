@@ -2,18 +2,22 @@ require 'sinatra'
 require 'dotenv/load'
 require_relative 'model/clima'
 require_relative 'api_clima'
+require 'time'
 
-get '/' do 
-    if params[:city]
-      p @clima = Apiclima.buscar(params[:city])
-
-      if @clima.nil?
-        @erro = "Cidade não encontrada, tente novamente."
-      end
-    end
+get '/clima' do 
     erb :index
 end
 
-post '/clima' do 
+get "/" do
+  @cidade = params[:city]
+  if @cidade && !@cidade.strip.empty?
+    @clima = Apiclima.buscar(@cidade)
+    
+    if @clima && params[:mostrar_previsao] == "true"
+      @proximos_dias = Apiclima.previsao(@cidade) 
+    end
+  end
+  erb :index
+end
 
-end 
+
