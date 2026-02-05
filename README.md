@@ -45,6 +45,7 @@ Antes de começar, você precisa ter instalado em sua máquina:
 2. **Instale as dependências**
     ```bash
     gem install sinatra httparty dotenv
+    bundle install
 
 3. **Configure as Variáveis de Ambiente Crie um arquivo chamado .env na raiz do projeto e adicione sua chave da OpenWeather:**
    ```bash
